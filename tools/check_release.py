@@ -31,6 +31,8 @@ for markdown in root.glob('*.md'):
             local=(root/path.split('#')[0]).resolve()
             assert local.is_relative_to(root) and local.exists(),(markdown.name,path)
 assert (root/'third-party').is_dir()
+for notice in (root/'third-party').rglob('*'):
+    if notice.is_file():assert notice.stat().st_size>0,'Empty upstream notice: '+str(notice)
 if args.download:
     product=manifest['application'].removeprefix('KryptoCore ').lower()
     assert product in ('msg','rescue')
@@ -53,5 +55,8 @@ if args.download:
             assert digest.hexdigest()==manifest['executable_sha256'],'Embedded executable checksum mismatch'
             assert any(entry.filename.endswith('/THIRD_PARTY_NOTICES.md') for entry in package.infolist())
             assert any('/third-party/' in entry.filename for entry in package.infolist())
+            for entry in package.infolist():
+                if '/third-party/' in entry.filename and not entry.is_dir():
+                    assert entry.file_size>0,'Empty packaged upstream notice: '+entry.filename
     print('Published archive, embedded executable and notice presence verified.')
 print('Release manifest, checksums and local documentation links passed.')

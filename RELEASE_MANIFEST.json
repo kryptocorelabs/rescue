@@ -5,7 +5,7 @@
   "platform": "windows-x64",
   "source_repository": "https://github.com/kryptocorelabs/apps-source",
   "source_visibility": "private",
-  "source_commit": "61a5e403be018fb953a6c1dc0744e0c0a19738b3",
+  "source_commit": "96f0cbf9ffeb56900c0ae6804090f3b7cd906177",
   "build_context": "Local Windows development workspace; corresponding application source copied to the recorded private commit. Independent clean binary reproducibility is not established.",
   "rust": "1.99.1",
   "dotnet_runtime": "10.0.9",
@@ -16,7 +16,7 @@
   "executable": "KryptoCore-Rescue.exe",
   "executable_sha256": "0997f571fc723c60d47b2f5475d4bd3041b0cce1752a9c572d70d552272fb253",
   "archive": "KryptoCore-Rescue-0.1.0-preview.2-windows-x64.zip",
-  "archive_sha256": "3186e368bda57db22db7a2af02024b5ae568d6ac24a149a945fbeb674b808757",
+  "archive_sha256": "02094f6d9ad4d60a2ab888e5ae563e8646e508e31794ae1151ef1cc58ca028ba",
   "release_url": "https://github.com/kryptocorelabs/rescue/releases/tag/v0.1.0-preview.2",
   "validation": {
     "embedded_worker_check": "passed",
