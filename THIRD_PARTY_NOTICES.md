@@ -7,7 +7,8 @@ normal/build Rust graph, across targets and workspace feature unification,
 is recorded in RUST-DEPENDENCIES.tsv; not every entry is linked on Windows.
 Preserve the applicable notices when redistributing incorporated components.
 Build-tool and Rust standard-library notices accompany the runtime notices.
-Application source is maintained privately; this documentation repository
-does not grant an open-source license for the application's interface.
+First-party application code, including its interface, is MIT licensed at
+https://github.com/kryptocorelabs/apps-source. Third-party components retain
+their own terms; this change does not relicense them.
 
 Rescue does not bundle Tor. ClamAV is an optional external scanner, not part of this distribution.
