@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "application": "KryptoCore Rescue",
-  "version": "0.1.0-preview.2",
+  "version": "0.1.0-preview.3",
   "platform": "windows-x64",
   "source_repository": "https://github.com/kryptocorelabs/apps-source",
   "source_visibility": "private",
-  "source_commit": "ac6568caf2f62876a9c4e6652696b6ac0b3f22a9",
+  "source_commit": "305919496eacd95ce76d851148841c58945b77bc",
   "build_context": "Local Windows development workspace; corresponding application source copied to the recorded private commit. Independent clean binary reproducibility is not established.",
   "rust": "1.99.1",
   "dotnet_runtime": "10.0.9",
@@ -14,15 +14,17 @@
   "independent_audit": false,
   "binary_reproducible": false,
   "executable": "KryptoCore-Rescue.exe",
-  "executable_sha256": "a6f26585bb1f7ab52d74100c15e65f2e2e43b836d127050e4b9c3d608543b997",
-  "archive": "KryptoCore-Rescue-0.1.0-preview.2-windows-x64.zip",
-  "archive_sha256": "fc8bf3560464896c63878eaffff34f81a18c2a9de5f575ad4f0efe55ad6374af",
-  "release_url": "https://github.com/kryptocorelabs/rescue/releases/tag/v0.1.0-preview.2",
+  "executable_sha256": "ae112f3057a4932e0481bf07cc73969d6c5fc54bf394e917a723bb00792e3053",
+  "archive": "KryptoCore-Rescue-0.1.0-preview.3-windows-x64.zip",
+  "archive_sha256": "52cbb2890376533ce091559ff6d3d72e3968cb50f194c4926e055abade8535d0",
+  "release_url": "https://github.com/kryptocorelabs/rescue/releases/tag/v0.1.0-preview.3",
   "validation": {
     "embedded_worker_check": "passed",
     "rust_workspace": "passed on local Windows",
-    "gui": "authenticated export, wrong password, plaintext consent, no overwrite and input clearing passed",
+    "gui": "Windows cross-app protected-key/signature flow and controlled scanner detection/error/no-detection gates passed; this does not measure real antivirus detection.",
+    "signature_protocol": "KCCS v1; KCP1 public code; encrypted KCSK v1 key file",
+    "real_clamav_engine_tested": false,
     "public_tor_verified": null,
-    "rust_notice_entries": 57
+    "rust_notice_entries": 71
   }
 }

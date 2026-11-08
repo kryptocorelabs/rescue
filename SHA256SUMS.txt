@@ -1,2 +1,2 @@
-fc8bf3560464896c63878eaffff34f81a18c2a9de5f575ad4f0efe55ad6374af  KryptoCore-Rescue-0.1.0-preview.2-windows-x64.zip
-a6f26585bb1f7ab52d74100c15e65f2e2e43b836d127050e4b9c3d608543b997  KryptoCore-Rescue.exe
+52cbb2890376533ce091559ff6d3d72e3968cb50f194c4926e055abade8535d0  KryptoCore-Rescue-0.1.0-preview.3-windows-x64.zip
+ae112f3057a4932e0481bf07cc73969d6c5fc54bf394e917a723bb00792e3053  KryptoCore-Rescue.exe

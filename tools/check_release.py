@@ -35,7 +35,7 @@ for notice in (root/'third-party').rglob('*'):
     if notice.is_file():assert notice.stat().st_size>0,'Empty upstream notice: '+str(notice)
 if args.download:
     product=manifest['application'].removeprefix('KryptoCore ').lower()
-    assert product in ('msg','rescue')
+    assert product in ('msg','rescue','container')
     url='https://github.com/kryptocorelabs/'+product+'/releases/download/v'+manifest['version']+'/'+manifest['archive']
     with tempfile.TemporaryDirectory() as temp:
         archive=Path(temp)/manifest['archive']

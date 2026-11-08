@@ -10,4 +10,4 @@ Build-tool and Rust standard-library notices accompany the runtime notices.
 Application source is maintained privately; this documentation repository
 does not grant an open-source license for the application's interface.
 
-Rescue does not bundle or start Tor and performs no network operations. Shared KCV/KCC readers retain their MIT license.
+Rescue does not bundle Tor. ClamAV is an optional external scanner, not part of this distribution.
