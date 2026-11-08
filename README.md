@@ -1,5 +1,7 @@
 # KryptoCore Rescue
 
+[Unreleased design preview](DESIGN.md)
+
 Offline file inspection and authenticated recovery exports. Built on the
 open-source [KryptoCore](https://github.com/kryptocorelabs/kryptocore) library.
 
