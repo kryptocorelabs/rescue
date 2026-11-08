@@ -10,6 +10,13 @@ open-source [KryptoCore](https://github.com/kryptocorelabs/kryptocore) library.
 **Preview 0.1.0-preview.3.** Use working copies and retain independent backups.
 The Windows executable is unsigned and has not received an independent audit.
 
+## Source and community
+
+[Browse the implementation](https://github.com/kryptocorelabs/apps-source/tree/main/apps/rescue) or
+read the [project charter](https://github.com/kryptocorelabs/kryptocore/blob/main/PROJECT_CHARTER.md). First-party code is MIT licensed;
+dependencies retain their own terms. Contributions and independent review are
+welcome. Source visibility does not change the documented preview limits.
+
 ## What works
 
 | File | Available operation | Required access |
@@ -51,7 +58,7 @@ passwords, decrypted records or ciphertext. It deliberately retains the
 See [architecture and limits](ARCHITECTURE.md), [security](SECURITY.md),
 [release notes](RELEASE_NOTES.md) and [third-party notices](THIRD_PARTY_NOTICES.md).
 This repository hosts public documentation and downloads; application source
-is maintained in the private application workspace. KryptoCore and its optional
+is [open under MIT](https://github.com/kryptocorelabs/apps-source/tree/main/apps/rescue). KryptoCore and its optional
 [signature companion](https://github.com/kryptocorelabs/kryptocore/tree/main/modules/signatures)
 remain open source. Rescue uses the signature companion through the shared KCC reader.
 
