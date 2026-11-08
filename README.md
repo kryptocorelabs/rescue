@@ -1,5 +1,7 @@
 # KryptoCore Rescue
 
+[Security in 30 seconds](SECURITY-IN-BRIEF.md) · [Recover without the main app](RESCUE-FIRST.md) · [Check a download](VERIFY-DOWNLOADS.md)
+
 [Standalone Windows builds and requirements](PORTABLE.md)
 
 [Unreleased design preview](DESIGN.md)
