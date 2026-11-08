@@ -1,5 +1,7 @@
 # KryptoCore Rescue
 
+[Standalone Windows builds and requirements](PORTABLE.md)
+
 [Unreleased design preview](DESIGN.md)
 
 Offline file inspection and authenticated recovery exports. Built on the
