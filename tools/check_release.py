@@ -16,6 +16,8 @@ manifest=json.loads((root/'RELEASE_MANIFEST.json').read_text(encoding='utf-8'))
 for key in ('executable_sha256','archive_sha256'):
     assert re.fullmatch('[0-9a-f]{64}',manifest[key]), key
 assert re.fullmatch('[0-9a-f]{40}',manifest['source_commit'])
+assert manifest['source_visibility'] == 'public'
+assert manifest['source_repository'] == 'https://github.com/kryptocorelabs/apps-source'
 for key in ('executable','archive'):
     assert Path(manifest[key]).name==manifest[key] and '/' not in manifest[key] and '\\' not in manifest[key]
 assert manifest['authenticode_signed'] is False
@@ -36,11 +38,19 @@ for notice in (root/'third-party').rglob('*'):
 if args.download:
     product=manifest['application'].removeprefix('KryptoCore ').lower()
     assert product in ('msg','rescue','container')
-    url='https://github.com/kryptocorelabs/'+product+'/releases/download/v'+manifest['version']+'/'+manifest['archive']
+    release_url = 'https://github.com/kryptocorelabs/'+product+'/releases/download/v'+manifest['version']+'/'
+    headers = {'User-Agent': 'KryptoCore-release-check'}
+    commit_url = 'https://api.github.com/repos/kryptocorelabs/apps-source/commits/'+manifest['source_commit']
+    with urllib.request.urlopen(urllib.request.Request(commit_url, headers=headers), timeout=30) as response:
+        assert json.load(response)['sha'] == manifest['source_commit'], 'Public source commit mismatch'
+    manifest_url = release_url+'RELEASE_MANIFEST.json'
+    with urllib.request.urlopen(urllib.request.Request(manifest_url, headers=headers), timeout=30) as response:
+        assert json.load(response) == manifest, 'Published release manifest differs from repository manifest'
+    url = release_url+manifest['archive']
     with tempfile.TemporaryDirectory() as temp:
         archive=Path(temp)/manifest['archive']
         total=0; digest=hashlib.sha256()
-        with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'KryptoCore-release-check'}),timeout=60) as response, archive.open('wb') as out:
+        with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60) as response, archive.open('wb') as out:
             while chunk:=response.read(1024*1024):
                 total+=len(chunk)
                 assert total<=512*1024*1024,'Archive exceeds preview download bound'
@@ -58,5 +68,5 @@ if args.download:
             for entry in package.infolist():
                 if '/third-party/' in entry.filename and not entry.is_dir():
                     assert entry.file_size>0,'Empty packaged upstream notice: '+entry.filename
-    print('Published archive, embedded executable and notice presence verified.')
+    print('Public source commit, published manifest, archive, embedded executable and notices verified.')
 print('Release manifest, checksums and local documentation links passed.')

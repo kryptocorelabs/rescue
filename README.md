@@ -25,6 +25,11 @@ read the [project charter](https://github.com/kryptocorelabs/kryptocore/blob/mai
 dependencies retain their own terms. Contributions and independent review are
 welcome. Source visibility does not change the documented preview limits.
 
+For preview.3, see the [recorded source revision](https://github.com/kryptocorelabs/apps-source/tree/305919496eacd95ce76d851148841c58945b77bc)
+and the [release manifest](RELEASE_MANIFEST.json). The source revision is public.
+The Windows binary was built locally, and independent reproducibility has yet
+to be established.
+
 ## What works
 
 | File | Available operation | Required access |
