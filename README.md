@@ -11,6 +11,8 @@ open-source [KryptoCore](https://github.com/kryptocorelabs/kryptocore) library.
 
 **Preview 0.1.0-preview.3.** Use working copies and retain independent backups.
 The Windows executable is unsigned and has not received an independent audit.
+The [canonical Rescue threat model](https://github.com/kryptocorelabs/apps-source/blob/main/apps/rescue/THREAT_MODEL.md)
+covers trusted inputs, read-only recovery and plaintext output.
 
 Testing to date has been carried out by the KryptoCoreLabs maintainers, locally
 and through automated CI. No independent security audit has been completed.
