@@ -22,7 +22,13 @@ for key in ('executable','archive'):
     assert Path(manifest[key]).name==manifest[key] and '/' not in manifest[key] and '\\' not in manifest[key]
 assert manifest['authenticode_signed'] is False
 assert manifest['independent_audit'] is False
-assert manifest['binary_reproducible'] is False
+assert type(manifest['binary_reproducible']) is bool
+if manifest['binary_reproducible']:
+    assert manifest['archive_reproducible'] is True
+    run_id = manifest['build_run_id']
+    assert type(run_id) is int and run_id > 0
+    assert manifest['build_run_url'] == f"https://github.com/kryptocorelabs/apps-source/actions/runs/{run_id}"
+    assert manifest['build_workflow'] == '.github/workflows/windows-provenance.yml'
 checks=(root/'SHA256SUMS.txt').read_text(encoding='ascii')
 assert manifest['archive_sha256']+'  '+manifest['archive'] in checks
 assert manifest['executable_sha256']+'  '+manifest['executable'] in checks
@@ -43,6 +49,18 @@ if args.download:
     commit_url = 'https://api.github.com/repos/kryptocorelabs/apps-source/commits/'+manifest['source_commit']
     with urllib.request.urlopen(urllib.request.Request(commit_url, headers=headers), timeout=30) as response:
         assert json.load(response)['sha'] == manifest['source_commit'], 'Public source commit mismatch'
+    if manifest['binary_reproducible']:
+        run_url = f"https://api.github.com/repos/kryptocorelabs/apps-source/actions/runs/{run_id}"
+        with urllib.request.urlopen(urllib.request.Request(run_url, headers=headers), timeout=30) as response:
+            build = json.load(response)
+        assert build['conclusion'] == 'success' and build['head_sha'] == manifest['source_commit']
+        assert build['path'].split('@', 1)[0] == manifest['build_workflow']
+        for name in ('BUILD-FIRST.json', 'BUILD-SECOND.json'):
+            with urllib.request.urlopen(urllib.request.Request(release_url + name, headers=headers), timeout=30) as response:
+                record = json.load(response)
+            assert record['source_commit'] == manifest['source_commit']
+            assert any(file['name'] == manifest['executable'] and file['sha256'] == manifest['executable_sha256']
+                       for file in record['files'])
     manifest_url = release_url+'RELEASE_MANIFEST.json'
     with urllib.request.urlopen(urllib.request.Request(manifest_url, headers=headers), timeout=30) as response:
         assert json.load(response) == manifest, 'Published release manifest differs from repository manifest'

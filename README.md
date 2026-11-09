@@ -9,8 +9,9 @@
 Offline file inspection and authenticated recovery exports. Built on the
 open-source [KryptoCore](https://github.com/kryptocorelabs/kryptocore) library.
 
-**Preview 0.1.0-preview.3.** Use working copies and retain independent backups.
-The Windows executable is unsigned and has not received an independent audit.
+**Preview 0.1.0-preview.4.** Use working copies and retain independent backups.
+The ZIP has a publisher signature and a GitHub build attestation. Windows
+Authenticode and independent review are pending.
 The [canonical Rescue threat model](https://github.com/kryptocorelabs/apps-source/blob/main/apps/rescue/THREAT_MODEL.md)
 covers trusted inputs, read-only recovery and plaintext output.
 
@@ -27,18 +28,17 @@ read the [project charter](https://github.com/kryptocorelabs/kryptocore/blob/mai
 dependencies retain their own terms. Contributions and independent review are
 welcome. Source visibility does not change the documented preview limits.
 
-For preview.3, see the [recorded source revision](https://github.com/kryptocorelabs/apps-source/tree/305919496eacd95ce76d851148841c58945b77bc)
-and the [release manifest](RELEASE_MANIFEST.json). The source revision is public.
-The Windows binary was built locally, and independent reproducibility has yet
-to be established.
+Two independent Windows runners produced matching EXE and ZIP bytes for
+preview.4. The [release manifest](RELEASE_MANIFEST.json) records the build run,
+public source commit and both hashes. The [verification guide](VERIFY-DOWNLOADS.md)
+explains how to check the exact download.
 
 ## What works
 
 | File | Available operation | Required access |
 | --- | --- | --- |
 | Vault KCV1 | Authenticate and export login records as a new JSON file. | Vault password. |
-| Vault KCV2 | Same export, using either existing access slot. | Vault password or previously configured recovery key. |
-| Vault KCV3 (unreleased) | Same read-only export; no claim that a backup is current. Published preview.3 lacks this reader. | Password or matching recovery key. |
+| Vault KCV2–KCV4 | Same read-only export, including older authentic backups. | Vault password or matching configured recovery key. |
 | Container KCC v1 | Authenticate the complete archive and extract into a new folder. | Container passphrase. |
 | Embedded KCC in an EXE | Read the payload as data and extract into a new folder. The EXE is never launched. | Container passphrase. |
 | MSG identity/sidecar | Recognize the marker and size bounds only. | Authenticated MSG recovery is not implemented. |
@@ -51,7 +51,7 @@ is still handled by Container. Unknown formats and unsupported versions are reje
 
 ## Windows quick start
 
-1. Download and extract the [preview ZIP](https://github.com/kryptocorelabs/rescue/releases/tag/v0.1.0-preview.3).
+1. Download and extract the [preview ZIP](https://github.com/kryptocorelabs/rescue/releases/tag/v0.1.0-preview.4).
 2. Run **KryptoCore-Rescue.exe**. No separate Python or .NET installation is needed.
 3. Choose **Datei auswählen …** and check the recognized format.
 4. Select **Passwort** or **Wiederherstellungsschlüssel** where supported and enter the existing credential.

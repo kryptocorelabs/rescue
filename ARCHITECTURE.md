@@ -1,15 +1,14 @@
 # Rescue architecture and limits
 
-## Implemented in 0.1.0-preview.3
+## Recovery worker
 
 An independent WPF Windows client embeds an offline Rust worker. It starts
 no main application, Tor process, account service or browser pairing.
 The worker recognizes formats from contents rather than extensions.
 
-Vault and Rescue share `modules/vault-format`: the existing KCV1/KCV2
-implementation and login schema were extracted without changing their
-cryptographic profile or on-disk bytes. `open_with_recovery` is a read-only
-slot-1 entry point; Rescue never calls the password-reset writer.
+Vault and Rescue share the pinned `modules/vault-format` crate for
+KCV1 through KCV4. `open_with_recovery` is the read-only slot-1
+entry point for KCV2 through KCV4.
 Decrypted records must match the existing deny-unknown-fields Login schema.
 
 Vault JSON is written to a temporary file in the chosen trusted parent,
